@@ -1,5 +1,6 @@
 package com.smeekens.eindopdracht.eindopdracht.controller;
 
+import com.smeekens.eindopdracht.eindopdracht.dto.request.UserPostRequest;
 import com.smeekens.eindopdracht.eindopdracht.model.User;
 import com.smeekens.eindopdracht.eindopdracht.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,10 @@ public class UserController {
     }
 
     @PostMapping(value = "")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
-        String newUsername = userService.createUser(user);
+    public ResponseEntity<Object> createUser(@RequestBody UserPostRequest userPostRequest) {
+
+        String newUsername = userService.createUser(userPostRequest);
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
                 .buildAndExpand(newUsername).toUri();
 

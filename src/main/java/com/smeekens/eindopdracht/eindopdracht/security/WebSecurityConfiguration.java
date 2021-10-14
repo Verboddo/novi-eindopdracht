@@ -65,9 +65,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
+                /*.antMatchers("/**").permitAll()*/
                 .antMatchers("/api/users/**").hasRole("ADMIN")
-                .antMatchers(POST,"/api/authenticate/**").permitAll()
+                .antMatchers(POST,"/api/authenticate/login").permitAll()
                 .antMatchers("/api/test/**").permitAll()
+                .anyRequest().denyAll()
                 .and()
                 .csrf().disable()
                 .formLogin().disable()

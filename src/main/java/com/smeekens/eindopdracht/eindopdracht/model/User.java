@@ -69,6 +69,10 @@ public class User {
         this.authorities = authorities;
     }
 
+    public void addAuthority(String authorityString) {
+        this.authorities.add(new Authority(this.username, authorityString));
+    }
+
     public String getFirstName() {
         return firstName;
     }
